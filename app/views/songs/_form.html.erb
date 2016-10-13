@@ -11,20 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.text_field :name, placeholder: "Song Name", class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.select(:rating, %w(1 2 3 4 5 6 7 8 9 10), { include_blank: "Rating" }) %>
+  <div class="form-group">
+    <%= f.select(:rating, %w(1 2 3 4 5 6 7 8 9 10), { include_blank: "Rating" }, class: "form-control") %>
   </div>
 
-  <div class="field">
-    <%= f.select(:artist_id, @artists.collect { |a| [a.name, a.id] }, { include_blank: "Please Select an Artist" }) %>
+  <div class="form-group">
+    <% if current_page?(new_song_path) || current_page?(edit_song_path) %>
+      <%= f.select(:artist_id, @artists.collect { |a| [a.name, a.id] }, { include_blank: "Please Select an Artist" }, class: "form-control") %>
+    <% else %>
+      <%= f.hidden_field :artist_id, value: @artist.id %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :video, placeholder: "Link to Video (Use Embed 'src')", class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Hit Play!", class: "btn btn-success" %>
   </div>
 <% end %>

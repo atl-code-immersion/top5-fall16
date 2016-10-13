@@ -13,5 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+
+	$('#add_song_by_artist').click(function(){
+		$(this).addClass('invisible');
+		$('#song_by_artist_form').removeClass('invisible');
+	})
+
+})

@@ -3,13 +3,16 @@
 <h1>Artists</h1>
 
 <%= link_to new_artist_path do %>
-  <i class="glyphicon glyphicon-plus"></i> Add
+  <i class="glyphicon glyphicon-plus add-icon"></i> Add
 <% end %>
 
 <div class="row">
   <% @artists.each do |artist| %>
     <div class="col-md-6">
-      <div class="well">
+      <div class="well artist-index-well">
+        <p>
+          <%= image_tag artist.image.url, class: "artist-index-pic" %>
+        </p>
         <h3><%= link_to artist.name, artist %></h3>
         <p>
           <%= link_to edit_artist_path(artist) do %>

@@ -1,19 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+	<div class="col-md-offset-2 col-md-8">
+		<div class="well">
+			<h2>
+			  <%= @song.name %>
+			</h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @song.name %>
-</p>
+			<p>
+			  by <%= link_to @song.artist.name, @song.artist %>
+			</p>
 
-<p>
-  <strong>Rating:</strong>
-  <%= @song.rating %>
-</p>
+			<p>
+			  <% @song.rating.times do %>
+            <i class="glyphicon glyphicon-star yellow-star"></i>
+          <% end %>
+          <% (10 - @song.rating).times do %>
+            <i class="glyphicon glyphicon-star"></i>
+          <% end %>
+			</p>
 
-<p>
-  <strong>Artist:</strong>
-  <%= @song.artist_id %>
-</p>
+			<p>
+				<%= link_to edit_song_path(@song) do %>
+					<i class="glyphicon glyphicon-pencil"></i>
+				<% end %>&nbsp;
+        <%= link_to @song, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="glyphicon glyphicon-trash"></i>
+        <% end %>
+      </p>
 
-<%= link_to 'Edit', edit_song_path(@song) %> |
-<%= link_to 'Back', songs_path %>
+      <% if !@song.video.nil? %>
+	      <div class="embed-responsive embed-responsive-16by9">
+  	    	<iframe src="<%= @song.video %>" frameborder="0" allowfullscreen></iframe>
+    	  </div>
+    	<% end %>
+    </div>
+  </div>
+</div>
+
+
+
